@@ -1,0 +1,43 @@
+﻿<script src="https://kendo.cdn.telerik.com/2019.1.220/js/jszip.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2019.1.220/js/kendo.all.min.js"></script>
+<script src="https://kendo.cdn.telerik.com/2019.1.220/js/kendo.aspnetmvc.min.js"></script>
+<script>
+    function placeholder(element) {
+        return $("<li class='list-item' id='placeholder'>Drop Here!</li>");
+    }
+
+    $(document).ready(function () {
+        $("#menu").kendoMenu();
+
+        $("#panelbar, .panelbar").kendoPanelBar({
+            expandMode: "multi"
+        });
+
+        $("select.ea").kendoDropDownList({
+            autoWidth: true
+        });
+
+        $("#sortable-listC").kendoSortable({
+            placeholder: placeholder
+        });
+
+        $("body").show();
+
+        $("#gridExams").kendoGrid({
+            sortable: true
+        });
+
+    });
+
+    $(document).ajaxSend(function (event, request, settings) {
+        //settings.url = settings.url.toLowerCase();
+    });
+</script>
+
+<script>
+    function onAdditionalData() {
+        return {
+            text: $("#questions").val()
+        };
+    }
+</script>

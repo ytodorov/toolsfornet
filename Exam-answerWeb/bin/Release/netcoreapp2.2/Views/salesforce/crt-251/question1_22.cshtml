@@ -1,0 +1,56 @@
+﻿<ul class="panelbar">
+    <li class="k-state-active">
+        <span class="k-link k-state-selected">Question @Model?.Id</span>
+        <div>
+            <p>
+                @Html.Raw(Model.H1OpenTag)
+                Universal Containers uses a seven-step selling methodology.
+                @Html.Raw(Model.H1CloseTag)
+            </p>
+            <p>
+                @Html.Raw(Model.H2OpenTag)
+                Each sales stage corresponds with a step in the methodology.
+                @Html.Raw(Model.H2CloseTag)
+            </p>
+            <p>
+                The first stage is a preliminary qualification step, and opportunities in this stage should NOT contribute to the forecast.
+            </p>
+            <p>
+                Which two actions should a consultant recommend to meet these requirements? (Choose two.)
+            </p>
+        </div>
+    </li>
+    <li class="k-state-active">
+        Answers
+        <div>
+            <p>
+                <ul class="fieldlist">
+                    <li>
+                        <input type="checkbox" id="@(Html.GetNextId())" class="k-checkbox">
+                        <label class="k-checkbox-label" for="@(Html.GetNextId(true))">
+                            Instruct sales users to enter 0S for the opportunity amount.
+                        </label>
+                    </li>
+                    <li class="correct">
+                        <input type="checkbox" id="@(Html.GetNextId())" class="k-checkbox">
+                        <label class="k-checkbox-label" for="@(Html.GetNextId(true))">
+                            Configure the first stage with the omitted forecast category.
+                        </label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="@(Html.GetNextId())" class="k-checkbox">
+                        <label class="k-checkbox-label" for="@(Html.GetNextId(true))">
+                            Override the forecast to be 0S for first stage opportunities.
+                        </label>
+                    </li>
+                    <li class="correct">
+                        <input type="checkbox" id="@(Html.GetNextId())" class="k-checkbox">
+                        <label class="k-checkbox-label" for="@(Html.GetNextId(true))">
+                            Assign 0% probability to the first sales stage.
+                        </label>
+                    </li>
+                </ul>
+            </p>
+        </div>
+    </li>
+</ul>

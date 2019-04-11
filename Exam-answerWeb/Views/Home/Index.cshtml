@@ -1,0 +1,85 @@
+﻿@(Html.Kendo().AutoComplete()
+                .Name("questions")
+                .DataTextField(nameof(SearchQuestionViewModel.Title))
+                .MinLength(2)
+                .HtmlAttributes(new { style = "width:100%" })
+                .Placeholder("Search any question here...")
+                .Height(400)
+                .DataSource(source => source
+                    .Custom()
+                    .Group(g => g.Add(nameof(SearchQuestionViewModel.ExamName), typeof(string)))
+                    .Transport(transport => transport
+                      .Read(read =>
+                      {
+                      read.Action("Read", "SearchQuestion")
+                          .Data("onAdditionalData");
+                  }))
+                    .ServerFiltering(true)).Deferred()
+)
+<br />
+<br />
+<table id="gridExams">
+    <colgroup>
+        <col />
+        <col style="width:200px" />
+        <col />
+        <col />
+        <col />
+    </colgroup>
+    <thead>
+        <tr>
+            <th data-field="make">Code</th>
+            <th data-field="model">Name</th>
+            <th data-field="year">Provider</th>
+            <th data-field="category">Learn Mode</th>
+            <th data-field="airconditioner">Exam Mode</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>AZ-100</td>
+            <td>Microsoft Azure Infrastructure and Deployment</td>
+            <td>Microsoft</td>
+            <td>
+                <a href="~/microsoft/az-100">Start</a>
+            </td>
+            <td>
+                <a href="~/microsoft/az-100/question1">Start</a>
+            </td>
+        </tr>
+        <tr>
+            <td>CRT-251</td>
+            <td>Sales Cloud Consultant</td>
+            <td>Salesforce</td>
+            <td>
+                <a href="~/salesforce/crt-251">Start</a>
+            </td>
+            <td>
+                <a href="~/salesforce/crt-251/question1">Start</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+@*<div class="text-center">
+    <p>
+        <h1>Community powered exam questions with answers and explanations.</h1>
+    </p>
+    <p>
+        <h2>
+            Popular exams:
+        </h2>
+        <br />
+        <h3>
+            AZ-100: Microsoft Azure Infrastructure and Deployment.
+        </h3>
+        <a href="~/microsoft/az-100">Start learning mode</a>
+        <a href="~/microsoft/az-100/question1">Start exam mode</a>
+        <h3>
+            Exam CRT-251: Sales Cloud Consultant.
+        </h3>
+        <a href="~/salesforce/crt-251">Start learning mode</a>
+        <a href="~/salesforce/crt-251/question1">Start exam mode</a>
+    </p>
+</div>*@

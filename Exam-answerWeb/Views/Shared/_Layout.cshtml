@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @if (ViewData["description"] != null)
+    {
+        <meta name="description" content="@ViewData["description"]" />
+    }
+    else
+    {
+        ViewData["description"] = "Community powered free exam answers with explanations.";
+        <meta name="description" content="@(ViewData["description"])" />
+    }
+    @if (ViewData["keywords"] != null)
+    {
+        <meta name="keywords" content="@ViewData["keywords"]" />
+    }
+    else
+    {
+        <meta name="keywords" content="free, exam, question, answer, explanation, az-100" />
+    }
+    @if (ViewData["title"] != null)
+    {
+        <title>@(ViewData["title"] + " | Exam-Answer")</title>
+        ViewData["finalTitle"] = ViewData["title"] + " | Exam-Answer";
+    }
+    else
+    {
+        <title>Exam-Answer</title>
+        ViewData["finalTitle"] = "Exam-Answer";
+    }
+    @{
+        ViewData["canonicalUrl"] = "https://www.exam-answer.com" + Context.Request.Path.ToString().TrimEnd('/');
+    }
+    <link href="@ViewData["canonicalUrl"]" rel="canonical" />
+
+
+    <meta property="og:url" content="@(ViewData["canonicalUrl"])" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@(ViewData["finalTitle"])" />
+    <meta property="og:description" content="@(ViewData["description"])" />
+    @*<meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />*@
+       
+    @*<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />*@
+
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2019.1.220/styles/kendo.common-fiori.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2019.1.220/styles/kendo.fiori.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2019.1.220/styles/kendo.fiori.mobile.min.css" />
+
+
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:700" rel="stylesheet">
+
+    <link href="~/css/site.css" rel="stylesheet" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43988280-9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-43988280-9');
+    </script>
+    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5c95682cfb6af900122ecbcc&product=social-ab' async='async'></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <script src="https://kendo.cdn.telerik.com/2019.1.220/js/jquery.min.js"></script>
+</head>
+<body style="display: none">
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.2&appId=438289293607244&autoLogAppEvents=1"></script>
+    <header>
+        <ul id="menu">
+            <li>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li>
+                Microsoft
+                <ul>
+                    <li>
+                        <a href="~/microsoft/az-100">AZ-100</a>
+                        <ul>
+                            @{
+                                for (int i = 1; i <= 71; i++)
+                                {
+                                    <li>
+                                        <a class="nav-link text-dark" href="~/microsoft/az-100/question@(i)">
+                                            @($"Question {i}")
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Salesforce
+                <ul>
+                    <li>
+                        <a href="~/salesforce/crt-251">CRT-251</a>
+                        <ul>
+                            @{
+                                for (int i = 1; i <= 22; i++)
+                                {
+                                    <li>
+                                        <a class="nav-link text-dark" href="~/salesforce/crt-251/question@(i)">
+                                            @($"Question {i}")
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <div>
+        <main role="main">
+            <div style="text-align: right;height:30px">
+                <div class="fb-like" data-href="https://www.exam-answer.com" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false"></div>
+            </div>
+
+            <partial name="_PrevNextPartial" />
+            <br />
+            <partial name="_ProgressPartial" />
+            <br />
+            @RenderBody()
+            <br />
+            <partial name="_PrevNextPartial" />
+        </main>
+    </div>
+
+    <br />
+
+    <footer>
+        @*<div class="container">
+                Exam - Answer<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>*@
+    </footer>
+    <partial name="_JsScripts" />
+    <script>
+    @Html.Kendo().DeferredScripts(false)
+    </script>   
+</body>
+</html>
